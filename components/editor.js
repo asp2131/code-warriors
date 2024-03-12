@@ -1,4 +1,5 @@
 import React from 'react';
+import {AnimatedTooltip} from "@/components/toolwarp"
 
 const Editor = ({
     editor,
@@ -20,12 +21,14 @@ const Editor = ({
             Execute
           </button>
           {/* Execute Button */}
+          <AnimatedTooltip tooltip={"Hey"} >
           <button
             className="mx-auto mb-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-150 ease-in-out"
             onClick={clearConsole}
           >
             Clear
           </button>
+          </AnimatedTooltip>
         </div>
         {/* Console Output */}
         <div className="flex-1 overflow-auto bg-gray-800 text-white p-4">

@@ -2,10 +2,11 @@
 import { useCodeMirror } from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { useEffect, useRef, useState } from "react";
+import { GameProvider } from "@/context/gameContext";
 
-import { useSpring,  useSpringRef } from "@react-spring/web";
+import { useSpring, useSpringRef } from "@react-spring/web";
 import Editor from "@/components/editor";
-import GamePanel from "@/components/gamepanel";
+import World from "@/components/world";
 
 // Little helpers ...
 const url = (name, wrap) =>
@@ -47,7 +48,6 @@ export default function Index() {
   });
 
   const toggleAnimation = () => {
-    
     // if(enemy.current[0].idle){
     // enemy.start();
     // } else {
@@ -124,19 +124,21 @@ export default function Index() {
   };
 
   return (
-    <div className="flex h-screen">
-      <GamePanel
-        toggleAnimation={toggleAnimation}
-        handleClick={handleClick}
-        position={position}
-        springs={enemySprings}
-      />
-      <Editor
-        editor={editor}
-        executeCode={executeCode}
-        clearConsole={clearConsole}
-        logs={logs}
-      />
-    </div>
+    <GameProvider>
+      <div className="flex h-screen">
+        <World
+          toggleAnimation={toggleAnimation}
+          handleClick={handleClick}
+          position={position}
+          springs={enemySprings}
+        />
+        <Editor
+          editor={editor}
+          executeCode={executeCode}
+          clearConsole={clearConsole}
+          logs={logs}
+        />
+      </div>
+    </GameProvider>
   );
 }
