@@ -24,7 +24,8 @@ export default function Index() {
   const [position, setPosition] = useState({ x: 100, y: 400 });
   const [logs, setLogs] = useState([]);
   const [code, setCode] = useState("// Write your code here");
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [menuIsActive, setMenuIsActive] = useState(false);
+
   // Intercept console.log
   const { setContainer } = useCodeMirror({
     container: editor.current,
@@ -108,6 +109,7 @@ export default function Index() {
 
   const clearConsole = () => {
     setLogs([]);
+    setMenuIsActive(false);
   };
 
   const handleClick = (event) => {
@@ -131,6 +133,8 @@ export default function Index() {
           handleClick={handleClick}
           position={position}
           springs={enemySprings}
+          menuIsActive={menuIsActive}
+          setMenuIsActive={setMenuIsActive}
         />
         <Editor
           editor={editor}
